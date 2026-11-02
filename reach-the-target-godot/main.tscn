@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://ce7kxkjmxuccp"]
+
+[ext_resource type="Script" uid="uid://c1shv6sk5leqt" path="res://Player.cs" id="1_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://c6gvxmfe2qo3y" path="res://icon.svg" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://di2ga8kfghdhv" path="res://Captura de ecrã 2026-09-02 131135.png" id="2_1bvp3"]
+[ext_resource type="Script" uid="uid://s3a1d1reo84f" path="res://Target.cs" id="3_h2yge"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kfot5"]
+size = Vector2(101, 107)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ny2st"]
+size = Vector2(146.47046, 148)
+
+[node name="Main" type="Node2D" unique_id=337097714]
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1879620681]
+position = Vector2(435, 334.00003)
+script = ExtResource("1_0xm2m")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1226209961]
+scale = Vector2(0.20849434, 0.20849434)
+texture = ExtResource("2_1bvp3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1428475611]
+position = Vector2(0.5, 0.49996948)
+shape = SubResource("RectangleShape2D_kfot5")
+
+[node name="Target" type="Area2D" parent="." unique_id=429974398]
+position = Vector2(962, 119.00001)
+scale = Vector2(2.9168189, 2.9168189)
+script = ExtResource("3_h2yge")
+
+[node name="Sprite2D" type="Sprite2D" parent="Target" unique_id=508730377]
+position = Vector2(1, 4)
+scale = Vector2(0.28865978, 0.28865963)
+texture = ExtResource("1_ig7tw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Target" unique_id=1504924564]
+position = Vector2(1.1848145, 4)
+scale = Vector2(0.25037888, 0.25037888)
+shape = SubResource("RectangleShape2D_ny2st")
+
+[node name="Message" type="Label" parent="." unique_id=2076071564]
+offset_left = 334.0
+offset_top = 87.0
+offset_right = 469.0
+offset_bottom = 110.0
+scale = Vector2(2.7600007, 2.7600007)
+text = "Reach the Target."
+
+[connection signal="body_entered" from="Target" to="Target" method="_on_body_entered"]
